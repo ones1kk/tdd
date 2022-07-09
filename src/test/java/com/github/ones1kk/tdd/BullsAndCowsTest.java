@@ -6,8 +6,7 @@ import com.github.ones1kk.tdd.bullsandcows.exception.InvalidValueException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -33,19 +32,21 @@ public class BullsAndCowsTest {
     @DisplayName("Int value of Ball class is between 1~9 ?")
     public void test2() throws Exception {
         // given
-        int invalidValue = 10;
+        int invalidValue1 = 10;
+        int invalidValue2 = -5;
         int validValue = 5;
 
         // when
         Ball ball = new Ball(validValue);
 
         //then
-        assertThrows(InvalidValueException.class, () -> new Ball(invalidValue));
+        assertThrows(InvalidValueException.class, () -> new Ball(invalidValue1));
+        assertThrows(InvalidValueException.class, () -> new Ball(invalidValue2));
         assertThat(ball).isInstanceOf(Ball.class);
     }
 
     @Test
-    @DisplayName("create Balls")
+    @DisplayName("create Balls class")
     public void test3() throws Exception {
         // given
         int value = 1;
@@ -53,7 +54,6 @@ public class BullsAndCowsTest {
         ballList.add(new Ball(value));
         ballList.add(new Ball(value));
         ballList.add(new Ball(value));
-
 
         // when
         Balls balls = new Balls(ballList);
@@ -64,23 +64,26 @@ public class BullsAndCowsTest {
     }
 
     @Test
-    @DisplayName("ballList size is 3 ?")
+    @DisplayName("Size of ballList is 3 ?")
     public void test4() throws Exception {
+        // given
         int value = 1;
-        List<Ball> invalidBallList = Stream.generate(() -> new Ball(value))
+        List<Ball> invalidBallList1 = Stream.generate(() -> new Ball(value))
                 .limit(1)
                 .collect(Collectors.toList());
+
+        List<Ball> invalidBallList2 = Collections.emptyList();
 
         List<Ball> validBallList = Stream.generate(() -> new Ball(value))
                 .limit(3)
                 .collect(Collectors.toList());
 
-
         // when
         Balls balls = new Balls(validBallList);
 
         //then
-        assertThrows(InvalidValueException.class, () -> new Balls(invalidBallList));
+        assertThrows(InvalidValueException.class, () -> new Balls(invalidBallList1));
+        assertThrows(InvalidValueException.class, () -> new Balls(invalidBallList2));
         assertThat(balls).isInstanceOf(Balls.class);
     }
 
