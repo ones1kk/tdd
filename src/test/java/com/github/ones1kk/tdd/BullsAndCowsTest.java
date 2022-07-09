@@ -117,4 +117,19 @@ public class BullsAndCowsTest {
         //then
         assertThat(helper).isInstanceOf(Helper.class);
     }
+    
+    @Test
+    @DisplayName("Validate expected value")
+    public void test7() throws Exception {
+        // given
+        int validExpected = 123;
+        int invalidExpected = 111222;
+
+        // when
+        Helper helper = new Helper(validExpected);
+        
+        //then
+        assertThrows(InvalidValueException.class, () -> new Helper(invalidExpected));
+        assertThat(helper).isInstanceOf(Helper.class);
+    }
 }
