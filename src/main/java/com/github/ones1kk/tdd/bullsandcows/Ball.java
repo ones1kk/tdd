@@ -10,7 +10,7 @@ public class Ball {
 
     public Ball(int value) {
         boolean valid = isValidRange(value);
-        if(!valid) throw new InvalidValueException("range of value should be between 1 and 9");
+        if (!valid) throw new InvalidValueException("range of value should be between 1 and 9");
         this.value = value;
     }
 

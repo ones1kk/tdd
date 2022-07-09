@@ -7,7 +7,9 @@ import com.github.ones1kk.tdd.bullsandcows.exception.InvalidValueException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -118,7 +120,7 @@ public class BullsAndCowsTest {
         //then
         assertThat(helper).isInstanceOf(Helper.class);
     }
-    
+
     @Test
     @DisplayName("Validate expected value")
     public void test7() throws Exception {
@@ -128,7 +130,7 @@ public class BullsAndCowsTest {
 
         // when
         Helper helper = new Helper(validExpected);
-        
+
         //then
         assertThrows(InvalidValueException.class, () -> new Helper(invalidExpected));
         assertThat(helper).isInstanceOf(Helper.class);

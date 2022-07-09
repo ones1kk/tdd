@@ -14,7 +14,7 @@ public class Balls {
 
     public Balls(List<Ball> ballList) {
         boolean valid = isValidSize(ballList);
-        if(!valid) throw new InvalidValueException("only 3 size of ball is allowed.");
+        if (!valid) throw new InvalidValueException("only 3 size of ball is allowed.");
         this.ballList = ballList;
     }
 

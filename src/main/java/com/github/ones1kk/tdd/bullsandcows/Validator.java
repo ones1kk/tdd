@@ -1,8 +1,5 @@
 package com.github.ones1kk.tdd.bullsandcows;
 
-import com.github.ones1kk.tdd.bullsandcows.Ball;
-import com.github.ones1kk.tdd.bullsandcows.Balls;
-
 import java.time.temporal.ValueRange;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -33,7 +30,7 @@ public class Validator {
 
     private static List<Integer> digits(int expected) {
         List<Integer> digits = new ArrayList<>();
-        while(expected > 0) {
+        while (expected > 0) {
             digits.add(expected % 10);
             expected /= 10;
         }
