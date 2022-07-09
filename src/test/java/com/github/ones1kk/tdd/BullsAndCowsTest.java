@@ -83,4 +83,22 @@ public class BullsAndCowsTest {
         assertThrows(InvalidValueException.class, () -> new Balls(invalidBallList));
         assertThat(balls).isInstanceOf(Balls.class);
     }
+
+    @Test
+    @DisplayName("Sort balls")
+    public void test5() throws Exception {
+        // given
+        int value = 1;
+        List<Ball> ballList = Stream.generate(() -> new Ball(value))
+                .limit(3)
+                .collect(Collectors.toList());
+
+        // when
+        Balls balls = new Balls(ballList);
+        int sorted = balls.sort();
+
+        //then
+        assertThat(sorted).isEqualTo(111);
+
+    }
 }
