@@ -2,6 +2,7 @@ package com.github.ones1kk.tdd;
 
 import com.github.ones1kk.tdd.bullsandcows.Ball;
 import com.github.ones1kk.tdd.bullsandcows.Balls;
+import com.github.ones1kk.tdd.bullsandcows.Helper;
 import com.github.ones1kk.tdd.bullsandcows.exception.InvalidValueException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -131,5 +132,20 @@ public class BullsAndCowsTest {
         //then
         assertThrows(InvalidValueException.class, () -> new Helper(invalidExpected));
         assertThat(helper).isInstanceOf(Helper.class);
+    }
+
+    @Test
+    @DisplayName("Ask what is expected")
+    public void test8() throws Exception {
+        // given
+        int expected = 123;
+        Helper helper = new Helper(expected);
+
+        // when
+        String result = helper.ask();
+
+        //then
+        assertThat(result).isInstanceOf(String.class);
+
     }
 }
