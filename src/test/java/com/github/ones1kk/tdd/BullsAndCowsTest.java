@@ -8,6 +8,8 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -59,5 +61,26 @@ public class BullsAndCowsTest {
         //then
         assertThat(balls).isInstanceOf(Balls.class);
 
+    }
+
+    @Test
+    @DisplayName("ballList size is 3 ?")
+    public void test4() throws Exception {
+        int value = 1;
+        List<Ball> invalidBallList = Stream.generate(() -> new Ball(value))
+                .limit(1)
+                .collect(Collectors.toList());
+
+        List<Ball> validBallList = Stream.generate(() -> new Ball(value))
+                .limit(3)
+                .collect(Collectors.toList());
+
+
+        // when
+        Balls balls = new Balls(validBallList);
+
+        //then
+        assertThrows(InvalidValueException.class, () -> new Balls(invalidBallList));
+        assertThat(balls).isInstanceOf(Balls.class);
     }
 }
