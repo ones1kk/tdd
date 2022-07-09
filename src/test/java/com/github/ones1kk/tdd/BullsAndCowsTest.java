@@ -104,4 +104,17 @@ public class BullsAndCowsTest {
         assertThat(sorted).isEqualTo(111);
 
     }
+
+    @Test
+    @DisplayName("Create Helper that help to teach what's result of expected value")
+    public void test6() throws Exception {
+        // given
+        int expected = 111;
+
+        // when
+        Helper helper = new Helper(expected);
+
+        //then
+        assertThat(helper).isInstanceOf(Helper.class);
+    }
 }
