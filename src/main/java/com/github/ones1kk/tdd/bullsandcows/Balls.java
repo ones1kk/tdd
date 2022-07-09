@@ -17,5 +17,12 @@ public class Balls {
         return (ballList.size() == 3);
     }
 
-
+    public int sort() {
+        String joined = ballList
+                .stream()
+                .map(Ball::getValue)
+                .map(Objects::toString)
+                .collect(Collectors.joining());
+        return Integer.parseInt(joined);
+    }
 }
