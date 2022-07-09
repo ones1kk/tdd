@@ -6,21 +6,16 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+import static com.github.ones1kk.tdd.bullsandcows.Validator.isValidSize;
+
 public class Balls {
 
-    private static final int ALLOWED_SIZE = 3;
-
     private final List<Ball> ballList;
-
 
     public Balls(List<Ball> ballList) {
         boolean valid = isValidSize(ballList);
         if(!valid) throw new InvalidValueException("only 3 size of ball is allowed.");
         this.ballList = ballList;
-    }
-
-    private static boolean isValidSize(List<Ball> ballList) {
-        return (ballList.size() == ALLOWED_SIZE);
     }
 
     public int sort() {
