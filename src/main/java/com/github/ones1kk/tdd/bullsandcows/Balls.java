@@ -32,7 +32,7 @@ public class Balls {
     }
 
     public boolean isFinished(int strike) {
-        return (strike == 0);
+        return (strike == 3);
     }
 
     public boolean isNothing(Balls expected) {

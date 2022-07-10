@@ -18,6 +18,12 @@ public class MainClass {
 
         Player player = new Player(answer);
 
-        player.play();
+        boolean play = player.play();
+        while(!play) {
+            play = player.play();
+            if(play) {
+                player.ask();
+            }
+        }
     }
 }
