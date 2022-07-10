@@ -1,8 +1,5 @@
 package com.github.ones1kk.tdd.bullsandcows;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import static com.github.ones1kk.tdd.bullsandcows.Validator.validateValue;
 
 public class Helper {

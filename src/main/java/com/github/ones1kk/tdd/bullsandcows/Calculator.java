@@ -17,9 +17,9 @@ public class Calculator {
 
     public boolean calculate() {
         boolean nothing = answer.isNothing(expected);
-        if(!nothing) {
+        if (!nothing) {
             List<Integer> strike = answer.isStrike(expected);
-            if(strike.size() == 3) {
+            if (strike.size() == 3) {
                 return isFinished(strike.size());
             }
             int ball = answer.isBall(expected);
@@ -30,7 +30,7 @@ public class Calculator {
         }
         System.out.println("낫싱");
 
-      return false;
+        return false;
     }
 
     private boolean isFinished(int strike) {

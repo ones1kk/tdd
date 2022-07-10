@@ -43,7 +43,7 @@ public class Player {
         private void call(int input, Balls answer) {
             Helper helper = new Helper(answer);
             boolean flag = helper.ask(input);
-            if(!flag) play();
+            if (!flag) play();
 
             ask();
         }

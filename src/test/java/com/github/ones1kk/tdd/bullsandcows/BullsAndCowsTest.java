@@ -1,9 +1,5 @@
-package com.github.ones1kk.tdd;
+package com.github.ones1kk.tdd.bullsandcows;
 
-import com.github.ones1kk.tdd.bullsandcows.Ball;
-import com.github.ones1kk.tdd.bullsandcows.Balls;
-import com.github.ones1kk.tdd.bullsandcows.Calculator;
-import com.github.ones1kk.tdd.bullsandcows.Helper;
 import com.github.ones1kk.tdd.bullsandcows.exception.InvalidValueException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -25,7 +21,7 @@ public class BullsAndCowsTest {
 
     @BeforeEach
     void init() {
-        validBallList =  Stream.generate(() -> new Ball(value))
+        validBallList = Stream.generate(() -> new Ball(value))
                 .limit(3)
                 .collect(Collectors.toList());
     }

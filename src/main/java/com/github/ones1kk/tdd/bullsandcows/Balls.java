@@ -34,7 +34,7 @@ public class Balls {
 
     public boolean isNothing(Balls expected) {
         boolean result = true;
-                for (Ball answer : ballList) {
+        for (Ball answer : ballList) {
             result = isResult(expected, result, answer);
         }
         return result;
@@ -58,7 +58,7 @@ public class Balls {
     }
 
     private void addIndex(Balls expected, int count, List<Integer> index) {
-        for(int i = 0; i < ballList.size(); i++) {
+        for (int i = 0; i < ballList.size(); i++) {
             count = getStrikeCount(expected, count, i, index);
         }
     }
