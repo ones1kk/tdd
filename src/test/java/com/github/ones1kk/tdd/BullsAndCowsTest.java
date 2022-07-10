@@ -223,4 +223,27 @@ public class BullsAndCowsTest {
         assertThat(count1).isEqualTo(2);
         assertThat(count2).isEqualTo(0);
     }
+
+    @Test
+    @DisplayName("Calculate whether expected had ball or not")
+    public void test12() throws Exception {
+        // given
+        List<Ball> answer = new ArrayList<>();
+        answer.add(new Ball(1));
+        answer.add(new Ball(2));
+        answer.add(new Ball(5));
+        Balls balls = new Balls(answer);
+
+        List<Ball> ballList = new ArrayList<>();
+        ballList.add(new Ball(9));
+        ballList.add(new Ball(6));
+        ballList.add(new Ball(1));
+        Balls expected = new Balls(ballList);
+
+        // when
+        int count = balls.isBall(expected);
+
+        //then
+        System.out.println("count = " + count);
+    }
 }
