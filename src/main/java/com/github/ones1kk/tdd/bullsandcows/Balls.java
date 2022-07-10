@@ -2,6 +2,7 @@ package com.github.ones1kk.tdd.bullsandcows;
 
 import com.github.ones1kk.tdd.bullsandcows.exception.InvalidValueException;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -33,7 +34,7 @@ public class Balls {
 
     public boolean isNothing(Balls expected) {
         boolean result = true;
-        for (Ball answer : ballList) {
+                for (Ball answer : ballList) {
             result = isResult(expected, result, answer);
         }
         return result;
@@ -49,18 +50,22 @@ public class Balls {
         return result;
     }
 
-    public int isStrike(Balls expected) {
+    public List<Integer> isStrike(Balls expected) {
         int count = 0;
-        for(int i = 0; i < ballList.size(); i++) {
-            count = isStrike(expected, count, i);
-        }
-        return count;
+        List<Integer> index = new ArrayList<>();
+        addIndex(expected, count, index);
+        return index;
     }
 
-    private int isStrike(Balls expected, int count, int i) {
+    private void addIndex(Balls expected, int count, List<Integer> index) {
+        for(int i = 0; i < ballList.size(); i++) {
+            count = getStrikeCount(expected, count, i, index);
+        }
+    }
+
+    private int getStrikeCount(Balls expected, int count, int i, List<Integer> index) {
         if (ballList.get(i).getValue() == expected.getBallList().get(i).getValue()) {
-            ballList.remove(i);
-            expected.getBallList().remove(i);
+            index.add(i);
             count++;
         }
         return count;
@@ -68,19 +73,36 @@ public class Balls {
 
     public int isBall(Balls expected) {
         int count = 0;
-        for(int i = 0; i < ballList.size(); i++) {
-            count = isBall(expected, count, i);
+        List<Integer> strike = isStrike(expected);
+        List<Integer> removedAnswer = getIntegers(ballList);
+        List<Integer> removedExpected = getIntegers(expected.getBallList());
+        remove(strike, removedAnswer, removedExpected);
+
+        for (int i = 0; i < removedAnswer.size(); i++) {
+            count = getBallCount(count, removedAnswer, removedExpected, i);
         }
+
         return count;
     }
 
-    private int isBall(Balls expected, int count, int i) {
-        for (int j = 0; j < expected.getBallList().size(); j++) {
-            if (ballList.get(i).getValue() == expected.getBallList().get(j).getValue()) {
+    private int getBallCount(int count, List<Integer> removedAnswer, List<Integer> removedExpected, int i) {
+        for (Integer integer : removedExpected) {
+            if (removedAnswer.get(i).intValue() == integer.intValue()) {
                 count++;
             }
         }
         return count;
+    }
+
+    private void remove(List<Integer> strike, List<Integer> removedAnswer, List<Integer> removedExpected) {
+        strike.forEach(index -> removedAnswer.remove(index.intValue()));
+        strike.forEach(index -> removedExpected.remove(index.intValue()));
+    }
+
+    private List<Integer> getIntegers(List<Ball> ballList) {
+        return ballList.stream()
+                .map(Ball::getValue)
+                .collect(Collectors.toList());
     }
 
 }

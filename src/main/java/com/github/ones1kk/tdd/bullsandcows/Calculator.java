@@ -1,5 +1,7 @@
 package com.github.ones1kk.tdd.bullsandcows;
 
+import java.util.List;
+
 public class Calculator {
 
     private Balls answer;
@@ -16,19 +18,22 @@ public class Calculator {
     public boolean calculate() {
         boolean nothing = answer.isNothing(expected);
         if(!nothing) {
-            int strike = answer.isStrike(expected);
+            List<Integer> strike = answer.isStrike(expected);
+            if(strike.size() == 3) {
+                return isFinished(strike.size());
+            }
             int ball = answer.isBall(expected);
-            System.out.println("strike = " + strike);
-            System.out.println("ball = " + ball);
+            String text = String.format("스트라이크 : %s 볼 : %s ", strike.size(), ball);
+            System.out.println(text);
 
-            return isFinished(strike);
+            return isFinished(strike.size());
         }
         System.out.println("낫싱");
 
       return false;
     }
 
-    public boolean isFinished(int strike) {
+    private boolean isFinished(int strike) {
         return (strike == 3);
     }
 }
