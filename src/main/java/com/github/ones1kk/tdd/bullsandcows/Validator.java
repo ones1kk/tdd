@@ -28,7 +28,7 @@ public class Validator {
         return new Balls(ballList);
     }
 
-    private static List<Integer> digits(int expected) {
+    public static List<Integer> digits(int expected) {
         List<Integer> digits = new ArrayList<>();
         while (expected > 0) {
             digits.add(expected % 10);
