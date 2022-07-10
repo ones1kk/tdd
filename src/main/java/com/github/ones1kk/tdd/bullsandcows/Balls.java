@@ -31,10 +31,6 @@ public class Balls {
         return Integer.parseInt(joined);
     }
 
-    public boolean isFinished(int strike) {
-        return (strike == 3);
-    }
-
     public boolean isNothing(Balls expected) {
         boolean result = true;
         for (Ball answer : ballList) {
@@ -63,6 +59,8 @@ public class Balls {
 
     private int isStrike(Balls expected, int count, int i) {
         if (ballList.get(i).getValue() == expected.getBallList().get(i).getValue()) {
+            ballList.remove(i);
+            expected.getBallList().remove(i);
             count++;
         }
         return count;

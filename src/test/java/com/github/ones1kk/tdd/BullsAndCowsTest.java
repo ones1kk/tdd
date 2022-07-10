@@ -117,7 +117,7 @@ public class BullsAndCowsTest {
         int expected = 111;
 
         // when
-        Helper helper = new Helper(expected, new Balls(validBallList));
+        Helper helper = new Helper(new Balls(validBallList));
 
         //then
         assertThat(helper).isInstanceOf(Helper.class);
@@ -127,14 +127,11 @@ public class BullsAndCowsTest {
     @DisplayName("Validate expected value")
     public void test7() throws Exception {
         // given
-        int validExpected = 123;
-        int invalidExpected = 111222;
-
+        Balls balls = new Balls(validBallList);
         // when
-        Helper helper = new Helper(validExpected, new Balls(validBallList));
+        Helper helper = new Helper(balls);
 
         //then
-        assertThrows(InvalidValueException.class, () -> new Helper(invalidExpected, new Balls(validBallList)));
         assertThat(helper).isInstanceOf(Helper.class);
     }
 
@@ -143,10 +140,10 @@ public class BullsAndCowsTest {
     public void test8() throws Exception {
         // given
         int expected = 123;
-        Helper helper = new Helper(expected, new Balls(validBallList));
+        Helper helper = new Helper(new Balls(validBallList));
 
         // when
-        boolean result = helper.ask();
+        boolean result = helper.ask(expected);
 
         //then
         assertThat(result).isInstanceOf(Boolean.class);

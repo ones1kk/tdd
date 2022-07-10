@@ -18,14 +18,17 @@ public class Calculator {
         if(!nothing) {
             int strike = answer.isStrike(expected);
             int ball = answer.isBall(expected);
-            System.out.println("ball = " + ball);
             System.out.println("strike = " + strike);
+            System.out.println("ball = " + ball);
 
-            return answer.isFinished(strike);
+            return isFinished(strike);
         }
-
         System.out.println("낫싱");
 
       return false;
+    }
+
+    public boolean isFinished(int strike) {
+        return (strike == 3);
     }
 }

@@ -7,16 +7,14 @@ import static com.github.ones1kk.tdd.bullsandcows.Validator.validateValue;
 
 public class Helper {
 
-    private Balls expected;
-
     private final Balls answer;
 
-    public Helper(int expected, Balls answer) {
-        this.expected = validateValue(expected);
+    public Helper(Balls answer) {
         this.answer = answer;
     }
 
-    public boolean ask() {
+    public boolean ask(int number) {
+        Balls expected = validateValue(number);
         Calculator calculator = new Calculator(expected);
         calculator.setAnswer(answer);
 
