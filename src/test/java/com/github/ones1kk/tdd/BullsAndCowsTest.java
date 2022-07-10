@@ -157,10 +157,11 @@ public class BullsAndCowsTest {
         // given
         Balls balls = new Balls(validBallList);
 
-        List<Ball> expected = new ArrayList<>();
-        expected.add(new Ball(1));
-        expected.add(new Ball(2));
-        expected.add(new Ball(3));
+        List<Ball> ballList = new ArrayList<>();
+        ballList.add(new Ball(1));
+        ballList.add(new Ball(2));
+        ballList.add(new Ball(3));
+        Balls expected = new Balls(ballList);
 
         // when
         String result = balls.calculate(expected);
@@ -175,15 +176,51 @@ public class BullsAndCowsTest {
         // given
         Balls balls = new Balls(validBallList);
 
-        List<Ball> expected = new ArrayList<>();
-        expected.add(new Ball(9));
-        expected.add(new Ball(8));
-        expected.add(new Ball(7));
+        List<Ball> validBallList = new ArrayList<>();
+        validBallList.add(new Ball(9));
+        validBallList.add(new Ball(8));
+        validBallList.add(new Ball(7));
+        Balls validExpected = new Balls(validBallList);
+
+        List<Ball> invalidBallList = new ArrayList<>();
+        invalidBallList.add(new Ball(1));
+        invalidBallList.add(new Ball(1));
+        invalidBallList.add(new Ball(1));
+        Balls invalidExpected = new Balls(invalidBallList);
 
         // when
-        boolean result = balls.isNothing(expected);
+        boolean result1 = balls.isNothing(validExpected);
+        boolean result2 = balls.isNothing(invalidExpected);
 
         //then
-        assertThat(result).isTrue();
+        assertThat(result1).isTrue();
+        assertThat(result2).isFalse();
+    }
+
+    @Test
+    @DisplayName("Calculate whether expected had strike or not")
+    public void test11() throws Exception {
+        // given
+        Balls balls = new Balls(validBallList);
+
+        List<Ball> ballList = new ArrayList<>();
+        ballList.add(new Ball(9));
+        ballList.add(new Ball(1));
+        ballList.add(new Ball(1));
+        Balls expected = new Balls(ballList);
+
+        List<Ball> invalidBallList = new ArrayList<>();
+        invalidBallList.add(new Ball(9));
+        invalidBallList.add(new Ball(8));
+        invalidBallList.add(new Ball(7));
+        Balls invalidExpected = new Balls(invalidBallList);
+
+        // when
+        int count1 = balls.isStrike(expected);
+        int count2 = balls.isStrike(invalidExpected);
+
+        //then
+        assertThat(count1).isEqualTo(2);
+        assertThat(count2).isEqualTo(0);
     }
 }
