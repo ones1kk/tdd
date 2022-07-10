@@ -26,4 +26,25 @@ public class Balls {
                 .collect(Collectors.joining());
         return Integer.parseInt(joined);
     }
+
+    public String calculate(List<Ball> expected) {
+        return "";
+    }
+
+    public boolean isNothing(List<Ball> expected) {
+        boolean result = true;
+        for (Ball answer : ballList) {
+            result = isResult(expected, result, answer);
+        }
+        return result;
+    }
+
+    private boolean isResult(List<Ball> expected, boolean result, Ball answer) {
+        for (Ball ball : expected) {
+            if (answer.getValue() == ball.getValue()) {
+                result = false;
+            }
+        }
+        return result;
+    }
 }
