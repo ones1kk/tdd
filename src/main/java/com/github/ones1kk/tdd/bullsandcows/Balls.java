@@ -52,15 +52,33 @@ public class Balls {
     public int isStrike(Balls expected) {
         int count = 0;
         for(int i = 0; i < ballList.size(); i++) {
-            count = getCount(expected, count, i);
+            count = isStrike(expected, count, i);
         }
         return count;
     }
 
-    private int getCount(Balls expected, int count, int i) {
+    private int isStrike(Balls expected, int count, int i) {
         if (ballList.get(i).getValue() == expected.getBallList().get(i).getValue()) {
             count++;
         }
         return count;
     }
+
+    public int isBall(Balls expected) {
+        int count = 0;
+        for(int i = 0; i < ballList.size(); i++) {
+            count = isBall(expected, count, i);
+        }
+        return count;
+    }
+
+    private int isBall(Balls expected, int count, int i) {
+        for (int j = 0; j < expected.getBallList().size(); j++) {
+            if (ballList.get(i).getValue() == expected.getBallList().get(j).getValue()) {
+                count++;
+            }
+        }
+        return count;
+    }
+
 }
