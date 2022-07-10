@@ -27,11 +27,11 @@ public class Balls {
         return Integer.parseInt(joined);
     }
 
-    public String calculate(List<Ball> expected) {
+    public String calculate(Balls expected) {
         return "";
     }
 
-    public boolean isNothing(List<Ball> expected) {
+    public boolean isNothing(Balls expected) {
         boolean result = true;
         for (Ball answer : ballList) {
             result = isResult(expected, result, answer);
@@ -39,12 +39,28 @@ public class Balls {
         return result;
     }
 
-    private boolean isResult(List<Ball> expected, boolean result, Ball answer) {
-        for (Ball ball : expected) {
+    private boolean isResult(Balls expected, boolean result, Ball answer) {
+        for (Ball ball : expected.getBallList()) {
             if (answer.getValue() == ball.getValue()) {
                 result = false;
+                break;
             }
         }
         return result;
+    }
+
+    public int isStrike(Balls expected) {
+        int count = 0;
+        for(int i = 0; i < ballList.size(); i++) {
+            count = getCount(expected, count, i);
+        }
+        return count;
+    }
+
+    private int getCount(Balls expected, int count, int i) {
+        if (ballList.get(i).getValue() == expected.getBallList().get(i).getValue()) {
+            count++;
+        }
+        return count;
     }
 }
