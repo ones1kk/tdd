@@ -4,6 +4,7 @@ import com.github.ones1kk.tdd.bullsandcows.Ball;
 import com.github.ones1kk.tdd.bullsandcows.Balls;
 import com.github.ones1kk.tdd.bullsandcows.Helper;
 import com.github.ones1kk.tdd.bullsandcows.exception.InvalidValueException;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -17,6 +18,17 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class BullsAndCowsTest {
+
+    private int value = 1;
+    private List<Ball> validBallList;
+
+    @BeforeEach
+    void init() {
+        validBallList =  Stream.generate(() -> new Ball(value))
+                .limit(3)
+                .collect(Collectors.toList());
+    }
+
 
     @Test
     @DisplayName("create Ball class")
@@ -53,13 +65,9 @@ public class BullsAndCowsTest {
     public void test3() throws Exception {
         // given
         int value = 1;
-        List<Ball> ballList = new ArrayList<>();
-        ballList.add(new Ball(value));
-        ballList.add(new Ball(value));
-        ballList.add(new Ball(value));
 
         // when
-        Balls balls = new Balls(ballList);
+        Balls balls = new Balls(validBallList);
 
         //then
         assertThat(balls).isInstanceOf(Balls.class);
@@ -77,9 +85,6 @@ public class BullsAndCowsTest {
 
         List<Ball> invalidBallList2 = Collections.emptyList();
 
-        List<Ball> validBallList = Stream.generate(() -> new Ball(value))
-                .limit(3)
-                .collect(Collectors.toList());
 
         // when
         Balls balls = new Balls(validBallList);
@@ -94,13 +99,9 @@ public class BullsAndCowsTest {
     @DisplayName("Sort balls")
     public void test5() throws Exception {
         // given
-        int value = 1;
-        List<Ball> ballList = Stream.generate(() -> new Ball(value))
-                .limit(3)
-                .collect(Collectors.toList());
+        Balls balls = new Balls(validBallList);
 
         // when
-        Balls balls = new Balls(ballList);
         int sorted = balls.sort();
 
         //then
