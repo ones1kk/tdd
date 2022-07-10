@@ -148,6 +148,41 @@ public class BullsAndCowsTest {
 
         //then
         assertThat(result).isInstanceOf(String.class);
+    }
 
+    @Test
+    @DisplayName("Balls calculate")
+    public void test9() throws Exception {
+        // given
+        Balls balls = new Balls(validBallList);
+
+        List<Ball> expected = new ArrayList<>();
+        expected.add(new Ball(1));
+        expected.add(new Ball(2));
+        expected.add(new Ball(3));
+
+        // when
+        String result = balls.calculate(expected);
+
+        //then
+        assertThat(result).isInstanceOf(String.class);
+    }
+
+    @Test
+    @DisplayName("Calculate whether it is nothing or something")
+    public void test10() throws Exception {
+        // given
+        Balls balls = new Balls(validBallList);
+
+        List<Ball> expected = new ArrayList<>();
+        expected.add(new Ball(9));
+        expected.add(new Ball(8));
+        expected.add(new Ball(7));
+
+        // when
+        boolean result = balls.isNothing(expected);
+
+        //then
+        assertThat(result).isTrue();
     }
 }
