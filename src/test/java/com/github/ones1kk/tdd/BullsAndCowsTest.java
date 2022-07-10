@@ -2,6 +2,7 @@ package com.github.ones1kk.tdd;
 
 import com.github.ones1kk.tdd.bullsandcows.Ball;
 import com.github.ones1kk.tdd.bullsandcows.Balls;
+import com.github.ones1kk.tdd.bullsandcows.Calculator;
 import com.github.ones1kk.tdd.bullsandcows.Helper;
 import com.github.ones1kk.tdd.bullsandcows.exception.InvalidValueException;
 import org.junit.jupiter.api.BeforeEach;
@@ -116,7 +117,7 @@ public class BullsAndCowsTest {
         int expected = 111;
 
         // when
-        Helper helper = new Helper(expected);
+        Helper helper = new Helper(expected, new Balls(validBallList));
 
         //then
         assertThat(helper).isInstanceOf(Helper.class);
@@ -130,10 +131,10 @@ public class BullsAndCowsTest {
         int invalidExpected = 111222;
 
         // when
-        Helper helper = new Helper(validExpected);
+        Helper helper = new Helper(validExpected, new Balls(validBallList));
 
         //then
-        assertThrows(InvalidValueException.class, () -> new Helper(invalidExpected));
+        assertThrows(InvalidValueException.class, () -> new Helper(invalidExpected, new Balls(validBallList)));
         assertThat(helper).isInstanceOf(Helper.class);
     }
 
@@ -142,13 +143,13 @@ public class BullsAndCowsTest {
     public void test8() throws Exception {
         // given
         int expected = 123;
-        Helper helper = new Helper(expected);
+        Helper helper = new Helper(expected, new Balls(validBallList));
 
         // when
-        String result = helper.ask();
+        boolean result = helper.ask();
 
         //then
-        assertThat(result).isInstanceOf(String.class);
+        assertThat(result).isInstanceOf(Boolean.class);
     }
 
     @Test
@@ -157,17 +158,12 @@ public class BullsAndCowsTest {
         // given
         Balls balls = new Balls(validBallList);
 
-        List<Ball> ballList = new ArrayList<>();
-        ballList.add(new Ball(1));
-        ballList.add(new Ball(2));
-        ballList.add(new Ball(3));
-        Balls expected = new Balls(ballList);
 
         // when
-        String result = balls.calculate(expected);
+        boolean result = balls.isFinished(3);
 
         //then
-        assertThat(result).isInstanceOf(String.class);
+        assertThat(result).isInstanceOf(Boolean.class);
     }
 
     @Test
@@ -244,6 +240,29 @@ public class BullsAndCowsTest {
         int count = balls.isBall(expected);
 
         //then
-        System.out.println("count = " + count);
+        assertThat(count).isEqualTo(1);
+    }
+
+    @Test
+    @DisplayName("Ask to Calculator for receiving result")
+    public void test13() throws Exception {
+        // given
+        List<Ball> answer = new ArrayList<>();
+        answer.add(new Ball(1));
+        answer.add(new Ball(2));
+        answer.add(new Ball(5));
+        Balls balls = new Balls(answer);
+
+        List<Ball> ballList = new ArrayList<>();
+        ballList.add(new Ball(9));
+        ballList.add(new Ball(6));
+        ballList.add(new Ball(1));
+        Balls expected = new Balls(ballList);
+
+        // when
+        Calculator calculator = new Calculator(expected);
+        calculator.setAnswer(balls);
+        //then
+        calculator.calculate();
     }
 }

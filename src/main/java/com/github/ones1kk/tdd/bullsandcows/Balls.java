@@ -18,6 +18,10 @@ public class Balls {
         this.ballList = ballList;
     }
 
+    public List<Ball> getBallList() {
+        return ballList;
+    }
+
     public int sort() {
         String joined = ballList
                 .stream()
@@ -27,8 +31,8 @@ public class Balls {
         return Integer.parseInt(joined);
     }
 
-    public String calculate(Balls expected) {
-        return "";
+    public boolean isFinished(int strike) {
+        return (strike == 0);
     }
 
     public boolean isNothing(Balls expected) {
