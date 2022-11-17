@@ -8,12 +8,12 @@ public class Balls {
     private final List<Ball> balls;
 
     public Balls(List<Ball> balls) {
-        this.balls = balls;
         Asserts.that(balls)
             .isNotNull()
             .isNotEmpty();
         Asserts.that(balls.size())
             .as("the balls size should be always 3.")
             .isEqualTo(3);
+        this.balls = balls;
     }
 }
