@@ -40,7 +40,7 @@ class ResultPrinterTest {
         @DisplayName("print test")
         void print_01() {
             ResultPrinter resultPrinter = new ResultPrinter(1, 2);
-            String message = resultPrinter.getResult();
+            String message = resultPrinter.write();
 
             String expected = String.format("%s Ball, %s Strike", 1, 2);
             assertThat(message).isEqualTo(expected);
@@ -50,7 +50,7 @@ class ResultPrinterTest {
         @DisplayName("print test, when game is over")
         void print_02() {
             ResultPrinter resultPrinter = new ResultPrinter(0, 3);
-            String message = resultPrinter.getResult();
+            String message = resultPrinter.write();
 
             String expected = "You got all 3 numbers right!\n Game Over";
             assertThat(message).isEqualTo(expected);
@@ -60,7 +60,7 @@ class ResultPrinterTest {
         @DisplayName("print test, when it's nothing")
         void print_03() {
             ResultPrinter resultPrinter = new ResultPrinter(0, 0);
-            String message = resultPrinter.getResult();
+            String message = resultPrinter.write();
 
             String expected = "Nothing";
             assertThat(message).isEqualTo(expected);

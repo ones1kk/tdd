@@ -29,7 +29,7 @@ public class ResultPrinter {
         this.strikeCount = strikeCount;
     }
 
-    public String getResult() {
+    public String write() {
         if (isEnd()) {
             result = END;
         }
@@ -49,7 +49,7 @@ public class ResultPrinter {
         if (isOnlyStrike()) {
             result = String.format(ONLY_STRIKE, ballCount);
         }
-
+        System.out.println(result);
         return result;
     }
 
