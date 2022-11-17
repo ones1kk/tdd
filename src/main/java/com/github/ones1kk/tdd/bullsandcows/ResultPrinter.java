@@ -34,7 +34,7 @@ public class ResultPrinter {
             result = END;
         }
 
-        if(isNothing()) {
+        if (isNothing()) {
             result = NOTHING;
         }
 

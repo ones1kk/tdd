@@ -24,7 +24,9 @@ public class Balls {
     public int hasBall(Ball ball) {
         for (Ball actual : balls) {
             boolean isBall = actual.isBall(ball);
-            if(isBall) return count;
+            if (isBall) {
+                return count;
+            }
         }
         return defaultCount;
     }
@@ -32,7 +34,9 @@ public class Balls {
     public int hasStrike(Ball ball) {
         for (Ball actual : balls) {
             boolean isStrike = actual.isStrike(ball);
-            if(isStrike) return count;
+            if (isStrike) {
+                return count;
+            }
         }
         return defaultCount;
     }

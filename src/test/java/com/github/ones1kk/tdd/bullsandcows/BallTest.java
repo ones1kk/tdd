@@ -48,7 +48,7 @@ class BallTest {
 
         @Test
         @DisplayName("ball.isStrike success test")
-        void isStrikeTest_success() {
+        void isStrike_success() {
             Ball actual = new Ball(1, 1);
             Ball expected = new Ball(1, 1);
 
@@ -60,7 +60,7 @@ class BallTest {
         @ParameterizedTest
         @ValueSource(ints = {2, 3})
         @DisplayName("ball.isStrike fail test, same value & different position")
-        void isStrikeTest_fail_01(int position) {
+        void isStrike_fail_01(int position) {
             Ball actual = new Ball(1, 1);
             Ball expected = new Ball(1, position);
 
@@ -72,7 +72,7 @@ class BallTest {
         @ParameterizedTest
         @ValueSource(ints = {2, 3, 4, 5, 6, 7, 8, 9})
         @DisplayName("ball.isStrike fail test, different value & same position")
-        void isStrikeTest_fail_02(int value) {
+        void isStrike_fail_02(int value) {
             Ball actual = new Ball(1, 1);
             Ball expected = new Ball(value, 1);
 
@@ -88,7 +88,7 @@ class BallTest {
 
         @Test
         @DisplayName("ball.isBall success test, same value & different position")
-        void isBallTest_success() {
+        void isBall_success() {
             Ball actual = new Ball(1, 1);
             Ball expected = new Ball(1, 3);
 
@@ -99,7 +99,7 @@ class BallTest {
 
         @Test
         @DisplayName("ball.isBall fail test, same value & position")
-        void isBallTest_fail_01() {
+        void isBall_fail_01() {
             Ball actual = new Ball(1, 1);
             Ball expected = new Ball(1, 1);
 
@@ -111,7 +111,7 @@ class BallTest {
         @ParameterizedTest
         @ValueSource(ints = {2, 3, 4, 5, 6, 7, 8, 9})
         @DisplayName("ball.isBall fail test, different value & same position")
-        void isBallTest_fail_02(int value) {
+        void isBall_fail_02(int value) {
             Ball actual = new Ball(1, 1);
             Ball expected = new Ball(value, 1);
 

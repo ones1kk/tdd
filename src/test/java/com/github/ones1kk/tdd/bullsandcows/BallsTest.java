@@ -27,7 +27,7 @@ class BallsTest {
 
     @Test
     @DisplayName("create test")
-    void createTest() {
+    void create() {
         Balls balls = new Balls(ballList);
 
         assertThat(balls).isNotNull();
