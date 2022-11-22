@@ -21,6 +21,24 @@ public class Balls {
         this.ballList = ballList;
     }
 
+    public int[] has(List<Ball> ballList) {
+        int ball = 0;
+        int strike = 0;
+
+        for (int i = 0; i < this.ballList.size(); i++) {
+            is(this.ballList.get(i).isBall(ballList.get(i)), ball);
+            is(this.ballList.get(i).isStrike(ballList.get(i)), strike);
+        }
+
+        return new int[]{ball, strike};
+    }
+
+    private void is(boolean standard, int count) {
+        if(standard) {
+            count++;
+        }
+    }
+
     public int hasBall(Ball ball) {
         for (Ball actual : ballList) {
             boolean isBall = actual.isBall(ball);
