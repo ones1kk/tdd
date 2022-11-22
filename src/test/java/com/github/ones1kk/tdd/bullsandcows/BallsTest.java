@@ -31,7 +31,7 @@ class BallsTest {
         Balls balls = new Balls(ballList);
 
         assertThat(balls).isNotNull();
-        assertThat(balls).extracting("balls")
+        assertThat(balls).extracting("ballList")
             .asList()
             .isNotEmpty();
     }

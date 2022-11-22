@@ -1,5 +1,11 @@
 package com.github.ones1kk.tdd.bullsandcows;
 
+import static com.github.ones1kk.tdd.bullsandcows.Message.BOTH;
+import static com.github.ones1kk.tdd.bullsandcows.Message.END;
+import static com.github.ones1kk.tdd.bullsandcows.Message.NOTHING;
+import static com.github.ones1kk.tdd.bullsandcows.Message.ONLY_BALL;
+import static com.github.ones1kk.tdd.bullsandcows.Message.ONLY_STRIKE;
+
 import io.github.ones1kk.assertion.core.Asserts;
 
 public class ResultPrinter {
@@ -9,16 +15,6 @@ public class ResultPrinter {
     private final int strikeCount;
 
     private String result;
-
-    private static final String BOTH = "%s Ball, %s Strike";
-
-    private static final String ONLY_BALL = "%s Ball";
-
-    private static final String ONLY_STRIKE = "%s Strike";
-
-    private static final String NOTHING = "Nothing";
-
-    private static final String END = "You got all 3 numbers right!\n Game Over";
 
     public ResultPrinter(int ballCount, int strikeCount) {
         Asserts.that(ballCount + strikeCount)
@@ -31,25 +27,24 @@ public class ResultPrinter {
 
     public String write() {
         if (isEnd()) {
-            result = END;
+            result = END.getValue();
         }
 
         if (isNothing()) {
-            result = NOTHING;
+            result = NOTHING.getValue();
         }
 
         if (isOnlyBall()) {
-            result = String.format(ONLY_BALL, strikeCount);
+            result = String.format(ONLY_BALL.getValue(), strikeCount);
         }
 
         if (isBoth()) {
-            result = String.format(BOTH, ballCount, strikeCount);
+            result = String.format(BOTH.getValue(), ballCount, strikeCount);
         }
 
         if (isOnlyStrike()) {
-            result = String.format(ONLY_STRIKE, ballCount);
+            result = String.format(ONLY_STRIKE.getValue(), ballCount);
         }
-        System.out.println(result);
         return result;
     }
 
